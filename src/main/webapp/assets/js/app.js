@@ -44,7 +44,7 @@ $(document).ready(function(){
 		  
 		  console.log(JSON.stringify(json));
 
-		  var url = 'http://localhost:8080/demo-hls/api/v1/pr/request';
+		  var url = 'https://demo-hls.herokuapp.com/api/v1/pr/request';
 
 		  sendRequest(url, json);
 	   
