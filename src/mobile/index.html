@@ -1,0 +1,300 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+
+  <title>Med App</title>
+
+  <!-- <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon"> -->
+  <!-- Bootstrap CSS -->
+
+  
+        <!-- Hammer reload -->
+          <script>
+            // setInterval(function(){
+            //   try {
+            //     if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
+            //     ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
+            //     ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
+            //     ws.onmessage = function(){
+            //       var links = document.getElementsByTagName('link'); 
+            //         for (var i = 0; i < links.length;i++) { 
+            //         var link = links[i]; 
+            //         if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) { 
+            //           href = link.href.replace(/((&|\?)hammer=)[^&]+/,''); 
+            //           link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
+            //         }
+            //       }
+            //     }
+            //   }catch(e){}
+            // }, 1000)
+          </script>
+        <!-- /Hammer reload -->
+      
+
+<link rel='stylesheet' href='assets/css/bootstrap.min.css'>
+<link rel='stylesheet' href='assets/css/material.css'>
+<link rel='stylesheet' href='assets/css/style.css'>
+
+<style type="text/css">
+	.header_cover {
+  background-image: none !important;
+}
+
+.ios-profile-widget .header_cover img {
+  width: 150px !important;
+  border-radius: 0 !important;
+}
+
+.ios-profile-widget .header_cover h3{
+	color: black !important;
+}
+</style>
+
+
+  <script src='assets/js/jquery.js'></script>
+<script src='assets/js/app.js'></script>
+  <script>
+    jQuery(window).load(function () {
+      $('.piluku-preloader').addClass('hidden');
+    });
+  </script>
+</head>
+<body class="" >
+  <div class="piluku-preloader text-center">
+  <!-- <div class="progress">
+      <div class="indeterminate"></div>
+  </div> -->
+  <div class="loader">Loading...</div>
+</div>
+<div class="wrapper mini-bar">
+
+  
+
+<div class="left-bar ">
+	<div class="admin-logo">
+		<div class="logo-holder pull-left">
+			<p>Med LOGO</p>	
+		</div>
+		<!-- logo-holder -->			
+		<a href="#" class="menu-bar  pull-right"><i class="ti-menu"></i></a>
+	</div>
+	<!-- admin-logo -->
+	<ul class="list-unstyled menu-parent" id="mainMenu">
+		<li>
+			<a href="index.html" class="waves-effect waves-light">
+				<i class="icon ti-home"></i>
+				<span class="text ">Dashboard</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<!-- left-bar -->
+
+<div class="content" id="content">
+	
+	<div class="overlay"></div>			
+	
+	<div class="top-bar">
+		<nav class="navbar navbar-default top-bar">
+			<ul class="nav navbar-nav navbar-right top-elements">
+				<li class="piluku-dropdown dropdown ">
+					<!-- @todo Change design here, its bit of odd or not upto usable -->
+
+					<a href="#" class="dropdown-toggle avatar_width" data-toggle="dropdown" role="button" aria-expanded="true"><span class="avatar-holder"><img src="images/patient.png" alt=""></span><span class="avatar_info">Patient Name</span><span class="drop-icon"><!-- <i class="ion ion-chevron-down"></i> --></span></a>
+					<ul class="dropdown-menu dropdown-piluku-menu  animated fadeInUp wow avatar_drop neat_drop dropdown-right animated" data-wow-duration="1500ms" role="menu" style="visibility: visible; animation-duration: 1500ms; -webkit-animation-duration: 1500ms; animation-name: fadeInUp; -webkit-animation-name: fadeInUp;">
+						<li>
+							<a href="profile.html"> <i class="ion-android-settings"></i>Settings</a>
+						</li>
+						<li>
+							<a href="lock-screen.html" class="logout_button"><i class="ion-power"></i>Logout</a>
+						</li>   
+					</ul>
+				</li>
+			</ul>
+		</nav>		
+	</div>
+	
+	<div class="main-content">
+		<!-- Write your HTML! -->
+
+		<div class="row">
+			
+			<div class="col-md-4 nopad-right">
+				<!-- panel -->
+				<div class="piluku-panel no-pad panel">
+				        <div class="ios-profile-widget">
+				            <div class="header_cover" id="food-related">
+				                <div class="more"><a href="#"><i class="ion-more"></i></a>
+				                </div>
+				                <img src="images/food-related.png" alt="">
+				                <h3>Food-related Inquiry</h3>
+				            </div>
+				            <!-- cover -->
+				            <ul class="list-inline interactive_btn">
+				            	<li></li>
+				                <li></li>
+				                <li>
+				                    <a href="#"><i class="ion-ios-chatboxes-outline  "></i></a>
+				                </li>
+				            </ul>
+
+				        </div>
+				        <!-- ios-profile -->
+				<!-- /panel -->
+				</div>
+			</div>
+
+			<div class="col-md-4 nopad-right">
+				<!-- panel -->
+				<div class="piluku-panel no-pad panel">
+				        <div class="ios-profile-widget">
+				            <div class="header_cover" id="child-life">
+				                <div class="more"><a href="#"><i class="ion-more"></i></a>
+				                </div>
+				                <img src="images/child-life.png" alt="">
+				                <h3>Child Life</h3>
+				            </div>
+				            <!-- cover -->
+				            <ul class="list-inline interactive_btn">
+				            	<li></li>
+				                <li></li>
+				                <li>
+				                    <a href="#"><i class="ion-ios-chatboxes-outline"></i></a>
+				                </li>
+				            </ul>
+
+				        </div>
+				        <!-- ios-profile -->
+				<!-- /panel -->
+				</div>
+			</div>
+
+
+			<div class="col-md-4 nopad-right">
+				<!-- panel -->
+				<div class="piluku-panel no-pad panel">
+				        <div class="ios-profile-widget">
+				            <div class="header_cover" id="need-my-nurse">
+				                <div class="more"><a href="#"><i class="ion-more"></i></a>
+				                </div>
+				                <img src="images/need-my-nurse.png" alt="">
+				                <h3>Need my Nurse</h3>
+				            </div>
+				            <!-- cover -->
+				            <ul class="list-inline interactive_btn">
+				            	<li></li>
+				                <li></li>
+				                <li>
+				                    <a href="#"><i class="ion-ios-chatboxes-outline"></i></a>
+				                </li>
+				            </ul>
+
+				        </div>
+				        <!-- ios-profile -->
+				<!-- /panel -->
+				</div>
+			</div>
+
+			<div class="col-md-4 nopad-right">
+				<!-- panel -->
+				<div class="piluku-panel no-pad panel">
+				        <div class="ios-profile-widget">
+				            <div class="header_cover" id="rapid-response">
+				                <div class="more"><a href="#"><i class="ion-more"></i></a>
+				                </div>
+				                <img src="images/rapid-response.png" alt="">
+				                <h3>Rapid Response</h3>
+				            </div>
+				            <!-- cover -->
+				            <ul class="list-inline interactive_btn">
+				            	<li></li>
+				                <li></li>
+				                <li>
+				                    <a href="#"><i class="ion-ios-chatboxes-outline"></i></a>
+				                </li>
+				            </ul>
+
+				        </div>
+				        <!-- ios-profile -->
+				<!-- /panel -->
+				</div>
+			</div>
+
+
+			<div class="col-md-4 nopad-right">
+				<!-- panel -->
+				<div class="piluku-panel no-pad panel">
+				        <div class="ios-profile-widget" id="housekeeping">
+				            <div class="header_cover">
+				                <div class="more"><a href="#"><i class="ion-more"></i></a>
+				                </div>
+				                <img src="images/housekeeping.png" alt="">
+				                <h3>Housekeeping</h3>
+				            </div>
+				            <!-- cover -->
+				            <ul class="list-inline interactive_btn">
+				            	<li></li>
+				                <li></li>
+				                <li>
+				                    <a href="#"><i class="ion-ios-chatboxes-outline"></i></a>
+				                </li>
+				            </ul>
+
+				        </div>
+				        <!-- ios-profile -->
+				<!-- /panel -->
+				</div>
+			</div>
+
+
+			<div class="col-md-4 nopad-right">
+				<!-- panel -->
+				<div class="piluku-panel no-pad panel">
+				        <div class="ios-profile-widget">
+				            <div class="header_cover" id="non-clinical">
+				                <div class="more"><a href="#"><i class="ion-more"></i></a>
+				                </div>
+				                <img src="images/non-clinical.png" alt="">
+				                <h3>Non-clinical Supplies</h3>
+				            </div>
+				            <!-- cover -->
+				            <ul class="list-inline interactive_btn">
+				            	<li></li>
+				                <li></li>
+				                <li>
+				                    <a href="#"><i class="ion-ios-chatboxes-outline"></i></a>
+				                </li>
+				            </ul>
+
+				        </div>
+				        <!-- ios-profile -->
+				<!-- /panel -->
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>  
+
+</div>
+<!-- wrapper -->
+
+<script src='assets/js/jquery-ui-1.10.3.custom.min.js'></script>
+<script src='assets/js/bootstrap.min.js'></script>
+<script src='assets/js/jquery.nicescroll.min.js'></script>
+<script src='assets/js/wow.min.js'></script>
+<script src='assets/js/jquery.loadmask.min.js'></script>
+<script src='assets/js/jquery.accordion.js'></script>
+<script src='assets/js/materialize.js'></script>
+<script src='assets/js/core.js'></script>
+
+<script src="assets/js/jquery.countTo.js"></script>
+</body>
+</html>
