@@ -12,13 +12,13 @@ function sendRequest(url, json){
 	  		console.log(JSON.stringify(item));
 
 	  		if (item.success == false){
-	  			alert(item.message);
+	  			swal('Error!',item.message,'error');
 	  		}else{
-		  		alert('Your ' + item.data.type + ' request was successfully registered!');
+		  		swal('Your ' + item.data.type + ' request was successfully registered!','',"success");
 	  		}
 	  	},
 	  	error: function(jq, status, message){
-	  		alert(jq.status + " - " + message);
+	  		swal('Error!',jq.status + " - " + message,'error');
 	  	}
 	  });
 
@@ -50,6 +50,11 @@ $(document).ready(function(){
 	   
 	});
 
+	
+	function sendMessage(){
+		_gaq.push(['_trackEvent', 'example', 'try', 'advanced-sweet-1']);
+	}
+	
 });
 
 
