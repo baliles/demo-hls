@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
 
-  <title>Med App</title>
+  <title>HLS App</title>
 
   <!-- <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon"> -->
@@ -58,6 +58,14 @@
 
 .content.no-bar {
     margin-left: 0px;
+}
+
+.comment {
+	color: #f7941d;
+}
+
+.call {
+	color: #2196F3;
 }
 
 </style>
@@ -241,33 +249,44 @@
 				</div>
 			</div>
 
-
-			<div class="col-md-4 col-s-4 col-xs-6 nopad-right">
-				<!-- panel -->
-				<div class="piluku-panel no-pad panel">
-				        <div class="ios-profile-widget">
-				            <div class="header_cover" id="need-my-nurse">
-				                <div class="more"><a href="#"><i class="ion-more"></i></a>
-				                </div>
-				                <img src="images/need-my-nurse.png" alt="">
-				                <h3>Need my Nurse</h3>
-				            </div>
-				            <!-- cover -->
-				            <ul class="list-inline interactive_btn">
-				            	<li></li>
-				                <li></li>
-				                <li>
-				                    <a href="#"><i class="ion-ios-chatboxes-outline" data-toggle="modal" data-target="#responsivemodal"></i></a>
+					<div class="col-md-4 col-s-4 col-xs-6 nopad-right">
+						<!-- panel -->
+						<div class="piluku-panel no-pad panel">
+							<div class="ios-profile-widget">
+								<div class="header_cover" id="need-my-nurse">
+									<div class="more">
+										<a href="#"><i class="ion-more"></i></a>
+									</div>
+									<img src="images/need-my-nurse.png" alt="">
+									<h3>Need my Nurse</h3>
+								</div>
+								<!-- cover -->
+								<ul class="list-inline interactive_btn">
+									<li></li>
+									<li>
+				                    	<a href="#"><i class="ion-ios-telephone call"></i></a>
+									</li>
+<!-- 									<li>
+										<button type="button" class="btn btn-primary btn-lg"
+											data-toggle="modal" data-target="#responsivemodal">
+											Ask</button>
+									</li>
+									<li><button type="button" class="btn btn-orange btn-lg"
+											data-toggle="modal" data-target="#responsivemodal">
+											Call</button></li>
+ -->
+								<li>
+				                    <a href="#"><i class="ion-ios-chatboxes comment" data-toggle="modal" data-target="#responsivemodal"></i></a>
 				                </li>
-				            </ul>
- 
-				        </div>
-				        <!-- ios-profile -->
-				<!-- /panel -->
-				</div>
-			</div>
+								</ul>
 
-			<div class="col-md-4 col-s-4 col-xs-6 nopad-right">
+							</div>
+							<!-- ios-profile -->
+							<!-- /panel -->
+						</div>
+					</div>
+
+					<div class="col-md-4 col-s-4 col-xs-6 nopad-right">
 				<!-- panel -->
 				<div class="piluku-panel no-pad panel">
 				        <div class="ios-profile-widget">
@@ -609,53 +628,25 @@ MODALS
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="ti-close"></span></button>
-					<h4 class="modal-title" id="myModalLabel5">Responsive Modal</h4>
+					<h4 class="modal-title" id="myModalLabel5">Need my nurse</h4>
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12 col-s-12 col-xs-12">
 							<div class="responsive-bottom">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar, ante faucibus facilisis convallis, sem nibh tempus nibh, non tristique est nunc ut erat. Curabitur eget lorem ornare, elementum enim a, ultricies odio.
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="responsive-bottom">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar, ante faucibus facilisis convallis, sem nibh tempus nibh, non tristique est nunc ut erat. Curabitur eget lorem ornare, elementum enim a, ultricies odio.
+								<textarea name="question" class="form-control text-area" rows="20" placeholder="Type your Question"></textarea>
 							</div>
 						</div>
 					</div>
 					<br><br>
-					<div class="row">
-						<div class="col-md-3">
-							<div class="responsive-bottom">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar, ante faucibus facilisis convallis, sem nibh tempus nibh, non tristique est nunc ut erat. Curabitur eget lorem ornare, elementum enim a, ultricies odio.
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="responsive-bottom">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar, ante faucibus facilisis convallis, sem nibh tempus nibh, non tristique est nunc ut erat. Curabitur eget lorem ornare, elementum enim a, ultricies odio.
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="responsive-bottom">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar, ante faucibus facilisis convallis, sem nibh tempus nibh, non tristique est nunc ut erat. Curabitur eget lorem ornare, elementum enim a, ultricies odio.
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="responsive-bottom">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar, ante faucibus facilisis convallis, sem nibh tempus nibh, non tristique est nunc ut erat. Curabitur eget lorem ornare, elementum enim a, ultricies odio.
-							</div>
-						</div>
-					</div>
-				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
+</div>
 <!-- 
 END MODALS
  -->
