@@ -70,6 +70,21 @@ public class SectionService
 		return ss;
 	}
 
+	public Section findByName(String name) {
+		if (logger.isDebugEnabled())
+			logger.debug("Retrieving Section with id:" + name);
+		
+		Section elementToGet = sectionRepository.findByName(name);
+		
+		if (elementToGet == null)
+			throw new SectionNotFoundException(name);
+		
+		elementToGet.setQuestions(getQuestionsForSection(elementToGet));
+
+		return elementToGet;
+	}
+
+	
 	public Section get(int id) {
 		if (logger.isDebugEnabled())
 			logger.debug("Retrieving Section with id:" + id);

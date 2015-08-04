@@ -1,3 +1,9 @@
+
+var sections;
+var debug = false;
+var patient = '0031a000003RTbLAAW';
+var q;
+
 function sendRequest(url, json){
 	  $.ajax({
 	  	url: url,
@@ -24,42 +30,190 @@ function sendRequest(url, json){
 
 }
 
-$(document).ready(function(){
-  
-	$('.header_cover').click(function() {
-		  
-		  var request_type = $(this).find('h3').text();  
-		  var comment = 'Comment ---- ' + request_type;
-		  var id = $(this).attr('id');
-		  var patient = '0031a000003RTbLAAW';
-		  var sub_category = 'SUB';
-		  
-		  var json = {
-	  		"type":request_type,
-	  		"comment":comment,
-	  		"originId":id,
-	  		"patient":patient,
-	  		"subCategory":sub_category
-  		  }
-		  
-		  console.log(JSON.stringify(json));
+function getServiceData(url){
+	  $.ajax({
+	  	url: url,
+	  	type: "GET",
+	  	
+	  	beforeSend: function(xhr) {
+	  		xhr.setRequestHeader("Accept", "application/json");
+	  		xhr.setRequestHeader("Content-Type", "application/json");
+	  	},
+	  	success: function(item) {
+	  		if (debug)
+	  			console.log(JSON.stringify(item));
 
-		  var url = 'https://demo-hls.herokuapp.com/api/v1/pr/request';
+	  		sections = item;
+	  		
+	  	},
+	  	error: function(jq, status, message){
+	  		swal('Error!',jq.status + " - " + message,'error');
+	  	}
+	  });
 
-		  sendRequest(url, json);
-	   
-	});
+}
 
+function prepareRequest(id, request_type, comment) {
+	var sub_category = 'SUB';
+
+	var json = {
+		"type" : request_type,
+		"comment" : comment,
+		"originId" : id,
+		"patient" : patient,
+		"subCategory" : sub_category
+	}
+
+	if (debug)
+		console.log(JSON.stringify(json));
+
+	var url = 'https://demo-hls.herokuapp.com/api/v1/pr/request';
+
+	sendRequest(url, json);
+}
+
+function loadPage(page) {
+
+    "use strict";
+    	
+    	$.ajax({
+    		url: page,
+    		dataType: 'html'
+    	}).done(function (result) {
+		    var $result = $(result);
+		    $('#main-content').html($result) ;
+		    if (debug)
+		    	console.log('Content [' + page + '] loaded!');
+    	}).fail(function (jqXHR, exception) {
+    		console.dir(jqXHR);
+    		console.dir(exception);
+    		if (jqXHR.status == 0) {
+    			alert('Could not connect.\nPlease check your connection settings.');
+    		} else if (jqXHR.status == 404) {
+    			alert('Requested page not found. [404]');
+    		} else if (jqXHR.status == 500) {
+    			alert('Internal Server Error [500].' + '\n' + jqXHR.responseText);
+    		} else if (jqXHR.status == 12007) {
+    			alert('The server name cannot be resolved.');
+    		} else if (jqXHR.status == 12029) {
+    			alert('Connection to the server failed.');
+    		} else if (exception == 'parsererror') {
+    			alert('JSON Parse failure.');
+    		} else if (exception == 'timeout') {
+    			alert('Time out error.');
+    		} else if (exception == 'abort') {
+    			alert('Request aborted.');
+    		} else {
+    			alert('Uncaught Error.\n' + jqXHR.responseText);
+    		}
+    	});
+}
+
+function initApp(){
+	loadPage('tiles.html');
+	getServiceData('http://demo-hls.herokuapp.com/api/v1/section/all');
+}
+
+function getSection(id){
 	
-	function sendMessage(){
-		_gaq.push(['_trackEvent', 'example', 'try', 'advanced-sweet-1']);
+	for (s in sections.data){
+		if (sections.data[s].name == id){
+			return sections.data[s];
+		}
+	}
+}
+
+function getQuestionFooter() {
+	var s = '';
+
+	s += '	<div class="row grid">';
+	s += '	<div class="col-md-12 col-s-12 col-xs-12">';
+	s += '		<div class="panel panel-piluku">';
+	s += '			<div class="panel-body">';
+	s += '				<ul class="pager wizard">;'
+	s += '					<li class="previous first disabled" style="display:none;"><a href="#">First</a>';
+	s += '					</li>';
+	s += '					<li class="previous disabled"><input type="submit" id="back-to-tiles" class="btn btn-lg" value="Back">';
+	s += '					</li>';
+	s += '					<li class="next last">';
+	s += '					</li>';
+	s += '					<li class="next"><input type="submit" class="btn btn-lg btn-success" value="Send request">';
+	s += '					</li>';
+	s += '				</ul>		';
+	s += '			</div>';
+	s += '		</div>';
+	s += '	</div>';
+	s += '</div>';
+
+	return s;
+
+}
+
+function loadQuestions(id, request_type){
+	
+	var section = getSection(id);
+	var questions = '';
+	
+	for(q in section.questions)
+	{
+		questions += addQuestion(section.questions[q]);
 	}
 	
+	questions += getQuestionFooter();
+	
+	$('#main-content').empty();
+	$('#main-content').html(questions);
+	
+	$("#back-to-tiles").unbind('click',function(e){});
+	$("#back-to-tiles").click(function(e){
+		loadPage('tiles.html');
+	});
+	
+}
+
+function addQuestion(q) {
+	var s = '<div class="row grid">';
+	s += '<div class="col-md-12 col-s-12 col-xs-12">';
+	s += '	<div class="panel panel-piluku">';
+	s += '		<div class="panel-heading">';
+	s += '			<h3 class="panel-title" id="question">' + q.question
+	s += '		<span class="panel-options">';
+	s += '				<a href="#" class="panel-refresh"></a>';
+	s += '				</span>';
+	s += '				</h3>';
+	s += '			</div>';
+	s += '<div class="panel-body">';
+	s += '		<ul class="list-group group-answer">';
+
+	for (a in q.answers)
+		s += '			<li class="list-group-item answer" id="question-' + q.id + '-answer-' + q.answers[a].id  + '">' + q.answers[a].answer  +  '</li>';
+
+	s += '				</ul>';
+	s += '			</div>';
+	s += '		</div>';
+	s += '	</div>';
+	s += '</div>';
+	return s;
+}
+
+
+$(document).ready(function(){
+  
+	window.setTimeout(initApp(), 50);
+	
+	$("#submit-need-my-nurse").click(function(e){
+
+		var request_type = 'Need my Nurse';
+		var id = 'need-my-nurse';
+		var comment = $('#nurse-question').val();
+		
+		prepareRequest(id, request_type, comment);
+		$('#nurse-question').val('');
+		
+	});
+	
+	
 });
-
-
-
-
 
 
 

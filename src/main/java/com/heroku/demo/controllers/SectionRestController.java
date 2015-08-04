@@ -130,20 +130,20 @@ public class SectionRestController {
 //		
 //	}
 
-	@RequestMapping(value="/{id}", method=RequestMethod.GET,
+	@RequestMapping(value="/{sectionName}", method=RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
-	public ResponseMessage getOne(@PathVariable Integer id) {
+	public ResponseMessage getOne(@PathVariable String sectionName) {
 		if (logger.isDebugEnabled())
-			logger.debug("SectionService -> getOne(" + id + ")");
+			logger.debug("SectionService -> getOne(" + sectionName + ")");
 		ResponseMessage responseMessage = new ResponseMessage();
 		
 		try {
-			responseMessage.setData(sectionService.get(id));
+			responseMessage.setData(sectionService.findByName(sectionName));
 		} catch (Exception e) {
 			logger.error("SectionController -> create", e);
 			responseMessage.setError(-1,
-					"Unable to create Section: " + id + ",Error:"  + e.getMessage());
+					"Unable to get Section: " + sectionName + ",Error:"  + e.getMessage());
 		}
 		
 		return responseMessage;
