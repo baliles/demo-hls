@@ -36,7 +36,7 @@ public class Answer implements Serializable {
     @Column(name="answer_order")
     private int order;
     
-    @Column(name="answers", length=255)
+    @Column(name="answer", length=255)
     private String     answer ;
 
     @Column(name="questionId")

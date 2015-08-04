@@ -53,6 +53,26 @@ public class SectionRestController {
 	}
 
 
+	@RequestMapping(value="/all", method=RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseMessage getAll() {
+
+		if (logger.isDebugEnabled())
+			logger.debug("SectionService -> getAll");
+		
+		ResponseMessage responseMessage = new ResponseMessage();
+		try {
+			responseMessage.setData(sectionService.findAll());
+		} catch (Exception e) {
+			logger.error("SectionController -> getAll", e);
+			responseMessage.setError(-1, "Unable to get all Sections: " + e.getMessage());
+		}
+		return responseMessage;
+		
+	}
+
+
 //	@RequestMapping(value="/count", method=RequestMethod.GET,
 //			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 //	@ResponseBody
