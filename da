@@ -1,6 +1,6 @@
 mvn clean
 git add .
 git commit -m "Commiting another change on `date`"
-git push heroku master
+git push origin master
 heroku logs --tail --app demo-hls
 
