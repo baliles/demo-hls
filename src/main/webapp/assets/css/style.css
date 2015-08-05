@@ -196,7 +196,7 @@ html {
 .wrapper {
   position: relative;
   overflow: hidden;
-  min-height: 1200px;
+/*   min-height: 1200px; */
 }
 .wrapper.fixed-top-bar .top-bar {
   position: fixed;
