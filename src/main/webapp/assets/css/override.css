@@ -1,0 +1,37 @@
+.header_cover {
+	background-image: none !important;
+}
+
+.ios-profile-widget .header_cover img {
+	width: 8.2em !important;
+	border-radius: 0 !important;
+}
+
+.ios-profile-widget .header_cover h3 {
+	color: black !important;
+}
+
+.content.no-bar {
+	margin-left: 0px;
+}
+
+.comment {
+	color: #f7941d;
+}
+
+.call {
+	color: #2196F3;
+}
+
+.question {
+	font-size: 20px !important;
+}
+
+.answer {
+	font-size: 16px !important;
+	line-height: 26px !important;
+}
+
+.group-answer {
+	padding-top: 10px !important;
+}
