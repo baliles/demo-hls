@@ -3,7 +3,8 @@ var sections;
 var debug = false;
 var patient = '0031a000003RTbLAAW';
 var q;
-
+var serverUrl = 'https://demo-hls.herokuapp.com';
+	
 function sendRequest(url, json){
 	  $.ajax({
 	  	url: url,
@@ -67,7 +68,7 @@ function prepareRequest(id, request_type, comment) {
 	if (debug)
 		console.log(JSON.stringify(json));
 
-	var url = 'https://demo-hls.herokuapp.com/api/v1/pr/request';
+	var url = serverUrl + '/api/v1/pr/request';
 
 	sendRequest(url, json);
 }
@@ -111,7 +112,7 @@ function loadPage(page) {
 
 function initApp(){
 	loadPage('tiles.html');
-	getServiceData('http://demo-hls.herokuapp.com/api/v1/section/all');
+	getServiceData(serverUrl + '/api/v1/section/all');
 }
 
 function getSection(id){
@@ -162,8 +163,8 @@ function loadQuestions(id, request_type){
 		if (section.questions[q].type == 'SINGLE' || section.questions[q].type == 'MULTIPLE')
 			addQuestionSingleOrMultiple(section.questions[q]);
 		
-		if (section.questions[q].type == 'COMMENT')
-			addQuestionComment(section.questions[q]);
+		if (section.questions[q].type == 'TEXT')
+			addQuestionText(section.questions[q]);
 		
 		if (section.questions[q].type == 'CALL')
 			addQuestionCall(section.questions[q]);
@@ -183,18 +184,14 @@ function addQuestionCall(q) {
 	return qid;
 }
 
-function addQuestionComment(q) {
+function addQuestionText(q) {
 	
 	var qid = '#question-' + q.id;
 	var s =  '<div class="row grid">\n';
 		s += '	<div class="col-md-12 col-s-12 col-xs-12">\n';
 		s += '		<div class="panel panel-piluku" id="question-' + q.id + '" data-type="' + q.type + '" data-comment="comment-' + q.id + '">\n';
 		s += '			<div class="panel-heading">\n';
-		s += '				<h3 class="panel-title">' + q.question + '\n';
-		
-		if (q.type == 'MULTIPLE')
-			s += ' (select multiple)';
-		
+		s += '				<h3 class="panel-title">' + q.question + '\n';		
 		s += '					<span class="panel-options">\n';
 		s += '						<a href="#" class="panel-refresh"></a>\n';
 		s += '					</span>\n';
@@ -203,7 +200,7 @@ function addQuestionComment(q) {
 		s += '			<div class="panel-body">\n';
 		s += '				<div class="col-md-12 col-s-12 col-xs-12">\n';
 		s += '					<div class="responsive-bottom">\n';
-		s += '						<textarea name="question" class="form-control text-area" rows="20" placeholder="Please enter your comment ..." id="comment-' + q.id + '"></textarea>\n';
+		s += '						<textarea name="question" class="form-control text-area" rows="20" placeholder="Please type your question ..." id="comment-' + q.id + '"></textarea>\n';
 		s += '					</div>\n';
 		s += '				</div>\n';
 		s += '			</div>\n';

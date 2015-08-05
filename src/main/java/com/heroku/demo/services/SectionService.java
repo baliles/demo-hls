@@ -99,7 +99,7 @@ public class SectionService
 
 	
 	private List<Question> getQuestionsForSection(Section s){
-		List<Question> qs = questionRepository.findBySectionId(s.getId());
+		List<Question> qs = questionRepository.findBySectionIdOrderByOrderAsc(s.getId());
 
 		for (int x=0 ; x < qs.size() ; x++){
 			qs.get(x).setAnswers(getAnswersForQuestion(qs.get(x)));
@@ -109,7 +109,7 @@ public class SectionService
 	}
 	
 	private List<Answer> getAnswersForQuestion(Question q){
-		return answerRepository.findByQuestionId(q.getId());
+		return answerRepository.findByQuestionIdOrderByOrderAsc(q.getId());
 	}
 	
 	/*

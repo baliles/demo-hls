@@ -10,5 +10,5 @@ import com.heroku.demo.entities.Question;
  * Repository : Account.
  */
 public interface QuestionRepository extends PagingAndSortingRepository<Question, Integer> {
-	public List<Question> findBySectionId(int sectionId);
+	public List<Question> findBySectionIdOrderByOrderAsc(int sectionId);
 }
