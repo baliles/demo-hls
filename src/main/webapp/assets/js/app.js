@@ -154,15 +154,23 @@ function loadQuestions(id, request_type){
 	var section = getSection(id);
 	var questions = '';
 	
+	$('#main-content').empty();
+
 	for(q in section.questions)
 	{
-		questions += addQuestion(section.questions[q]);
+		
+		if (section.questions[q].type == 'SINGLE' || section.questions[q].type == 'MULTIPLE')
+			addQuestionSingleOrMultiple(section.questions[q]);
+		
+		if (section.questions[q].type == 'COMMENT')
+			addQuestionComment(section.questions[q]);
+		
+		if (section.questions[q].type == 'CALL')
+			addQuestionCall(section.questions[q]);
+		
 	}
 	
-	questions += getQuestionFooter();
-	
-	$('#main-content').empty();
-	$('#main-content').html(questions);
+	$('#main-content').append(getQuestionFooter());
 	
 	$("#back-to-tiles").unbind('click',function(e){});
 	$("#back-to-tiles").click(function(e){
@@ -170,32 +178,91 @@ function loadQuestions(id, request_type){
 	});
 	
 }
-
-function addQuestion(q) {
-	var s = '<div class="row grid">';
-	s += '<div class="col-md-12 col-s-12 col-xs-12">';
-	s += '	<div class="panel panel-piluku">';
-	s += '		<div class="panel-heading">';
-	s += '			<h3 class="panel-title" id="question">' + q.question
-	s += '		<span class="panel-options">';
-	s += '				<a href="#" class="panel-refresh"></a>';
-	s += '				</span>';
-	s += '				</h3>';
-	s += '			</div>';
-	s += '<div class="panel-body">';
-	s += '		<ul class="list-group group-answer">';
-
-	for (a in q.answers)
-		s += '			<li class="list-group-item answer" id="question-' + q.id + '-answer-' + q.answers[a].id  + '">' + q.answers[a].answer  +  '</li>';
-
-	s += '				</ul>';
-	s += '			</div>';
-	s += '		</div>';
-	s += '	</div>';
-	s += '</div>';
-	return s;
+function addQuestionCall(q) {
+	var qid = '#question-' + q.id;
+	return qid;
 }
 
+function addQuestionComment(q) {
+	
+	var qid = '#question-' + q.id;
+	var s =  '<div class="row grid">\n';
+		s += '	<div class="col-md-12 col-s-12 col-xs-12">\n';
+		s += '		<div class="panel panel-piluku" id="question-' + q.id + '" data-type="' + q.type + '" data-comment="comment-' + q.id + '">\n';
+		s += '			<div class="panel-heading">\n';
+		s += '				<h3 class="panel-title">' + q.question + '\n';
+		
+		if (q.type == 'MULTIPLE')
+			s += ' (select multiple)';
+		
+		s += '					<span class="panel-options">\n';
+		s += '						<a href="#" class="panel-refresh"></a>\n';
+		s += '					</span>\n';
+		s += '				</h3>\n';
+		s += '			</div>\n';
+		s += '			<div class="panel-body">\n';
+		s += '				<div class="col-md-12 col-s-12 col-xs-12">\n';
+		s += '					<div class="responsive-bottom">\n';
+		s += '						<textarea name="question" class="form-control text-area" rows="20" placeholder="Please enter your comment ..." id="comment-' + q.id + '"></textarea>\n';
+		s += '					</div>\n';
+		s += '				</div>\n';
+		s += '			</div>\n';
+		s += '		</div>\n';
+		s += '	</div>\n';
+		s += '</div>\n';
+		
+	if (debug)
+		console.log(s);
+		
+	$('#main-content').append(s);
+
+		return qid;
+}
+
+function addQuestionSingleOrMultiple(q) {
+var s =  '<div class="row grid">\n';
+	s += '	<div class="col-md-12 col-s-12 col-xs-12">\n';
+	s += '		<div class="panel panel-piluku" id="question-' + q.id + '" data-type="' + q.type + '">\n';
+	s += '			<div class="panel-heading">\n';
+	s += '				<h3 class="panel-title">' + q.question + '\n';
+	s += '					<span class="panel-options">\n';
+	s += '						<a href="#" class="panel-refresh"></a>\n';
+	s += '					</span>\n';
+	s += '				</h3>\n';
+	s += '			</div>\n';
+	s += '			<div class="panel-body">\n';
+	s += '				<div class="list-group demo-list-group group-answer">\n';
+
+	for (a in q.answers)
+		s += '				<a href="#" class="list-group-item" id="question-' + q.id + '-answer-' + q.answers[a].id  + '">' + q.answers[a].answer  +  '</a>\n';
+
+	s += '				</div>\n';
+	s += '			</div>\n';
+	s += '		</div>\n';
+	s += '	</div>\n';
+	s += '</div>\n';
+	
+	if (debug)
+		console.log(s);
+	
+	$('#main-content').append(s);
+
+	var qid = '#question-' + q.id;
+	
+	$(qid).find('a.list-group-item').click(function(e){
+		var thisId = $(this).attr('id');
+		
+		if (q.type == 'SINGLE'){
+			$(this).parent().find('a.list-group-item').each(function(){
+				$(this).removeClass('active');
+			});
+		}
+		
+		$(this).toggleClass('active');
+	});
+	
+	return qid;
+}
 
 $(document).ready(function(){
   
