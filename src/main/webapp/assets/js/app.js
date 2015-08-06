@@ -5,7 +5,7 @@ var patient = '0031a000003RTbLAAW';
 var q;
 var serverUrl = 'https://demo-hls.herokuapp.com';
 	
-function sendRequest(url, json){
+function sendRequest(url, json, request_type){
 	  $.ajax({
 	  	url: url,
 	  	data: JSON.stringify(json),
@@ -19,12 +19,30 @@ function sendRequest(url, json){
 	  		console.log(JSON.stringify(item));
 
 	  		if (item.success == false){
+	  			loadPage('tiles.html');
 	  			swal('Error!',item.message,'error');
 	  		}else{
-		  		swal('Your ' + item.data.type + ' request was successfully registered!','',"success");
+	  			
+	  			swal({
+	  				title: request_type,
+	  				text: "Request was successfully registered!",
+	  				type: "success",
+	  				showCancelButton: false,
+	  				confirmButtonClass: 'btn-success',
+	  				confirmButtonText: 'Ok!',
+	  				closeOnConfirm: true,
+	  		          //closeOnCancel: false
+	  		      },
+	  		      function(){
+	  		      	//swal("Thanks!", "We are glad you clicked welcome!", "success");
+	  		      	loadPage('tiles.html');
+	  		      });
+
+//		  		swal('Your ' + item.data.type + ' request was successfully registered!','',"success");
 	  		}
 	  	},
 	  	error: function(jq, status, message){
+	  		loadPage('titles.html');
 	  		swal('Error!',jq.status + " - " + message,'error');
 	  	}
 	  });
@@ -45,7 +63,9 @@ function getServiceData(url){
 	  			console.log(JSON.stringify(item));
 
 	  		sections = item;
-	  		
+	  		console.log('Data loaded!');
+	        $('.piluku-preloader').addClass('hidden');
+
 	  	},
 	  	error: function(jq, status, message){
 	  		swal('Error!',jq.status + " - " + message,'error');
@@ -70,7 +90,7 @@ function prepareRequest(id, request_type, comment) {
 
 	var url = serverUrl + '/api/v1/pr/request';
 
-	sendRequest(url, json);
+	sendRequest(url, json, request_type);
 }
 
 function loadPage(page) {
@@ -193,7 +213,6 @@ function loadQuestions(id, request_type){
 					console.log('answer !!  ' + $(this).text());
 					text+= $(this).text() + ',';
 				});
-				//$("div[data-role='question']").find('.active').text()
 			}
 			
 			if (type == 'TEXT')
@@ -202,15 +221,12 @@ function loadQuestions(id, request_type){
 			s += "question:"  + q +  ", id:" + $(this).attr('id') + ',type: ' + type + ',answer:' + text + '\n';
 			
 		});
-		console.log('Sent!!!\n' + s);
 		
-		swal('Request was successfully registered!\n','',"success");
+		if (debug)
+			console.log('Sent!!!\n' + s);
 		
+		prepareRequest(id, request_type, s);
 		
-		/*, function(){
-			loadPage('tiles.html');
-		}
-		*/
 		return s;
 		
 	});

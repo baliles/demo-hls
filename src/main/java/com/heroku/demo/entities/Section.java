@@ -50,6 +50,9 @@ public class Section implements Serializable {
     @Column(name="section_type")
     private String type;
     
+    @Column(name="section_message", length=4000)
+    private String message;
+    
     @Transient
     private List<Question> questions;
     
@@ -60,6 +63,7 @@ public class Section implements Serializable {
 		this.image = a.image;
 		this.type = a.type;
 		this.order = a.order;
+		this.message = a.message;
 		return a;
 	}
 
@@ -140,6 +144,14 @@ public class Section implements Serializable {
 
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	//----------------------------------------------------------------------

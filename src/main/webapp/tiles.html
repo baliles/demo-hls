@@ -5,7 +5,7 @@
 				<!-- panel -->
 				<div class="piluku-panel no-pad panel">
 				        <div class="ios-profile-widget">
-				            <div class="header_cover" id="food-related">
+				            <div class="header_cover" id="food-related" data-type="QUESTION">
 				                <div class="more"><a href="#"><i class="ion-more"></i></a>
 				                </div>
 				                <img src="images/food-related.png" alt="">
@@ -30,7 +30,7 @@
 				<!-- panel -->
 				<div class="piluku-panel no-pad panel">
 				        <div class="ios-profile-widget">
-				            <div class="header_cover" id="child-life">
+				            <div class="header_cover" id="child-life"  data-type="QUESTION">
 				                <div class="more"><a href="#"><i class="ion-more"></i></a>
 				                </div>
 				                <img src="images/child-life.png" alt="">
@@ -55,7 +55,7 @@
 						<!-- panel -->
 						<div class="piluku-panel no-pad panel">
 							<div class="ios-profile-widget">
-								<div class="header_cover" id="need-my-nurse">
+								<div class="header_cover" id="need-my-nurse" data-type="COMMENT">
 									<div class="more">
 										<a href="#"><i class="ion-more"></i></a>
 									</div>
@@ -83,7 +83,7 @@
 				<!-- panel -->
 				<div class="piluku-panel no-pad panel">
 				        <div class="ios-profile-widget">
-				            <div class="header_cover" id="rapid-response">
+				            <div class="header_cover" id="rapid-response" data-type="CALL" data-message="URGENT!!!!! - GO IMMEDIATELY!">
 				                <div class="more"><a href="#"><i class="ion-more"></i></a>
 				                </div>
 				                <img src="images/rapid-response.png" alt="">
@@ -108,7 +108,7 @@
 			<div class="col-md-4 col-s-4 col-xs-6 nopad-right">
 				<!-- panel -->
 				<div class="piluku-panel no-pad panel">
-				        <div class="ios-profile-widget" id="housekeeping">
+				        <div class="ios-profile-widget" id="housekeeping" data-type="QUESTION">
 				            <div class="header_cover">
 				                <div class="more"><a href="#"><i class="ion-more"></i></a>
 				                </div>
@@ -134,7 +134,7 @@
 				<!-- panel -->
 				<div class="piluku-panel no-pad panel">
 				        <div class="ios-profile-widget">
-				            <div class="header_cover" id="non-clinical-">
+				            <div class="header_cover" id="non-clinical" data-type="COMMENT">
 				                <div class="more"><a href="#"><i class="ion-more"></i></a>
 				                </div>
 				                <img src="images/non-clinical.png" alt="">
@@ -162,13 +162,22 @@
 $('#tiles').find('.header_cover').click(function() {
 	  
 	var request_type = $(this).find('h3').text();
+	var type = $(this).attr('data-type');
 	var id = $(this).attr('id');
-	var comment = 'Comment ---- ' + request_type;
 
+	console.log("TYPE = " + type);
 	
-	loadQuestions(id, request_type);
+	if (type == 'QUESTION')	
+		loadQuestions(id, request_type);
 	
-	//prepareRequest(id, request_type, comment);
+	if (type == 'CALL'){
+		var message = $(this).attr('data-message');
+		
+		//if (debug)
+			console.log('CALL - ' + message);
+		
+		prepareRequest(id, request_type, message);
+	}
 });
 
 </script>
