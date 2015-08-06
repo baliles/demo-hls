@@ -131,14 +131,14 @@ function getQuestionFooter() {
 	s += '	<div class="col-md-12 col-s-12 col-xs-12">';
 	s += '		<div class="panel panel-piluku">';
 	s += '			<div class="panel-body">';
-	s += '				<ul class="pager wizard">;'
+	s += '				<ul class="pager wizard">';
 	s += '					<li class="previous first disabled" style="display:none;"><a href="#">First</a>';
 	s += '					</li>';
 	s += '					<li class="previous disabled"><input type="submit" id="back-to-tiles" class="btn btn-lg" value="Back">';
 	s += '					</li>';
 	s += '					<li class="next last">';
 	s += '					</li>';
-	s += '					<li class="next"><input type="submit" class="btn btn-lg btn-success" value="Send request">';
+	s += '					<li class="next"><input type="submit" id="submit-questions" class="btn btn-lg btn-success" value="Send request">';
 	s += '					</li>';
 	s += '				</ul>		';
 	s += '			</div>';
@@ -177,8 +177,46 @@ function loadQuestions(id, request_type){
 	$("#back-to-tiles").click(function(e){
 		loadPage('tiles.html');
 	});
+
+	
+	$("#submit-questions").unbind('click',function(e){});
+	$("#submit-questions").click(function(e){
+		var s='';
+		$("div[data-role='question']").each(function(){
+			var type = $(this).attr('data-type');
+			var q = $(this).find('h3').text().trim();
+			var text = '';
+
+			if (type == 'SINGLE' || type == 'MULTIPLE'){
+				console.log('type : ' + type);
+				$(this).find('.active').each(function(){
+					console.log('answer !!  ' + $(this).text());
+					text+= $(this).text() + ',';
+				});
+				//$("div[data-role='question']").find('.active').text()
+			}
+			
+			if (type == 'TEXT')
+				text = $(this).find('textarea').val();
+				
+			s += "question:"  + q +  ", id:" + $(this).attr('id') + ',type: ' + type + ',answer:' + text + '\n';
+			
+		});
+		console.log('Sent!!!\n' + s);
+		
+		swal('Request was successfully registered!\n','',"success");
+		
+		
+		/*, function(){
+			loadPage('tiles.html');
+		}
+		*/
+		return s;
+		
+	});
 	
 }
+
 function addQuestionCall(q) {
 	var qid = '#question-' + q.id;
 	return qid;
@@ -189,7 +227,7 @@ function addQuestionText(q) {
 	var qid = '#question-' + q.id;
 	var s =  '<div class="row grid">\n';
 		s += '	<div class="col-md-12 col-s-12 col-xs-12">\n';
-		s += '		<div class="panel panel-piluku" id="question-' + q.id + '" data-type="' + q.type + '" data-comment="comment-' + q.id + '">\n';
+		s += '		<div class="panel panel-piluku" id="question-' + q.id + '" data-type="' + q.type + '" data-role="question" data-comment="comment-' + q.id + '">\n';
 		s += '			<div class="panel-heading">\n';
 		s += '				<h3 class="panel-title">' + q.question + '\n';		
 		s += '					<span class="panel-options">\n';
@@ -219,7 +257,7 @@ function addQuestionText(q) {
 function addQuestionSingleOrMultiple(q) {
 var s =  '<div class="row grid">\n';
 	s += '	<div class="col-md-12 col-s-12 col-xs-12">\n';
-	s += '		<div class="panel panel-piluku" id="question-' + q.id + '" data-type="' + q.type + '">\n';
+	s += '		<div class="panel panel-piluku" id="question-' + q.id + '" data-role="question" data-type="' + q.type + '">\n';
 	s += '			<div class="panel-heading">\n';
 	s += '				<h3 class="panel-title">' + q.question + '\n';
 	s += '					<span class="panel-options">\n';
