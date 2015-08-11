@@ -35,3 +35,6 @@
 .group-answer {
 	padding-top: 10px !important;
 }
+.masterbackground {
+	background-image: https://demo-hls.herokuapp.com/images/background-healthcare.png;
+}
