@@ -47,6 +47,14 @@ public class PatientRequestService
 		
 	}
 
+	public Iterable<PatientRequest> findLikeComment(String patientRequest){
+		if (logger.isDebugEnabled())
+			logger.debug("Retrieving PatientRequest with sfid:" + patientRequest);
+		
+		return patientRequestRepository.findByCommentsCLikeAndPatientNameC("COMMENT:%", patientRequest);
+	}
+	
+	
 //	public List<PatientRequest> findByPatientRequest(String patientRequest) {
 //		if (logger.isDebugEnabled())
 //			logger.debug("PatientRequestService -> findByLink:" + patientRequest);

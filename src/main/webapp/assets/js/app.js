@@ -22,7 +22,8 @@ function sendRequest(url, json, request_type){
 	  			loadPage('tiles.html');
 	  			swal('Error!',item.message,'error');
 	  		}else{
-	  			
+	  			callMessagesService();
+
 	  			swal({
 	  				title: request_type,
 	  				text: "Request was successfully registered!",
@@ -73,6 +74,30 @@ function getServiceData(url){
 	  });
 
 }
+
+function getMessages(url){
+	console.log('Loading messages .... ');
+	  $.ajax({
+	  	url: url,
+	  	type: "GET",
+	  	
+	  	beforeSend: function(xhr) {
+	  		xhr.setRequestHeader("Accept", "application/json");
+	  		xhr.setRequestHeader("Content-Type", "application/json");
+	  	},
+	  	success: function(item) {
+	  		if (debug)
+	  			console.log(JSON.stringify(item));
+
+	  		addAllMessages(item);
+	  	},
+	  	error: function(jq, status, message){
+	  		swal('Error!',jq.status + " - " + message,'error');
+	  	}
+	  });
+
+}
+
 
 function prepareRequest(id, request_type, comment) {
 	var sub_category = 'SUB';
@@ -133,6 +158,13 @@ function loadPage(page) {
 function initApp(){
 	loadPage('tiles.html');
 	getServiceData(serverUrl + '/api/v1/section/all');
+	callMessagesService();
+}
+
+function callMessagesService(){
+//	getMessages(serverUrl + '/api/v1/pr/chat?patient=' + patient);
+	getMessages('http://localhost:8080/demo-hls' + '/api/v1/pr/chat?patient=' + patient);
+
 }
 
 function getSection(id){
@@ -270,6 +302,38 @@ function addQuestionText(q) {
 		return qid;
 }
 
+function addMessage(record){
+	
+	var s = '<a href="#" class="list-group-item" id="message-' + record.id + '" data-sfid="' + record.sfid +  '">';
+		s+=	'	<p class="list-group-item-text">' + record.commentsC.replace('COMMENT:','') + '</p>';
+		s+=	'</a>';
+		
+		return s;
+}
+
+function addAllMessages(response){
+
+var s = '<div class="list-group message-list"> ';
+	
+	for (m in response.data)
+		s += addMessage(response.data[m]);
+
+	s += '</div>	';
+	
+	console.log(s);
+	
+	$('.message-list').empty();
+	$('.message-list').html(s);
+	
+	$('#messages').find('.ion-android-refresh').on('click', function(e){
+		callMessagesService();
+	});
+	
+}
+
+
+
+
 function addQuestionSingleOrMultiple(q) {
 var s =  '<div class="row grid">\n';
 	s += '	<div class="col-md-12 col-s-12 col-xs-12">\n';
@@ -315,18 +379,26 @@ var s =  '<div class="row grid">\n';
 	return qid;
 }
 
+
+
 $(document).ready(function(){
   
 	window.setTimeout(initApp(), 50);
 	
-	$("#submit-need-my-nurse").click(function(e){
+	$(".submit").click(function(e){
 
-		var request_type = 'Need my Nurse';
-		var id = 'need-my-nurse';
-		var comment = $('#nurse-question').val();
+		var request_type = $(this).closest('div[role="dialog"]').attr('id').replace('modal-','');
+		var id = $(this).attr('data-request');
+		var comment = 'COMMENT:' + $('#comment-' + request_type).val();
+		
+		if (debug){
+			console.log(request_type);
+			console.log(id);
+			console.log(comment);
+		}
 		
 		prepareRequest(id, request_type, comment);
-		$('#nurse-question').val('');
+		$('#comment-' + request_type).val('');
 		
 	});
 	

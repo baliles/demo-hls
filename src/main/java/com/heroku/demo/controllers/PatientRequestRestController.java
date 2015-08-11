@@ -53,6 +53,24 @@ public class PatientRequestRestController {
 		
 	}
 
+	@RequestMapping(value="/chat", method=RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseMessage getChat(String patient) {
+
+		if (logger.isDebugEnabled())
+			logger.debug("PatientRequestService -> getPage");
+		
+		ResponseMessage responseMessage = new ResponseMessage();
+		try {
+			responseMessage.setData(patientRequestService.findLikeComment(patient));
+		} catch (Exception e) {
+			logger.error("PatientRequestController -> getChat", e);
+			responseMessage.setError(-1, "Unable to get page for PatientRequest: " + e.getMessage());
+		}
+		return responseMessage;
+		
+	}
 
 //	@RequestMapping(value="/count", method=RequestMethod.GET,
 //			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

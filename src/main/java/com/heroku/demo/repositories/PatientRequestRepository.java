@@ -15,5 +15,5 @@ import com.heroku.demo.entities.PatientRequest;
 public interface PatientRequestRepository extends PagingAndSortingRepository<PatientRequest, Integer> {
 
 	public PatientRequest findBySfid(String sfid);
-
+	public Iterable<PatientRequest> findByCommentsCLikeAndPatientNameC(String like, String sfid);
 }

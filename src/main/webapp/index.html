@@ -181,9 +181,9 @@
 		<div class="contacts">
 			<div class="col col-md-12">
 				<ul class="tabs">
-					<li class="tab col-md-3"><a href="#test1" class="active">Chat</a></li>
+					<li class="tab col-md-3"><a href="#test1">Chat</a></li>
 					<li class="tab col-md-3"><a href="#test2">Settings</a></li>
-					<li class="tab col-md-3"><a href="#test3">Messages</a></li>
+					<li class="tab col-md-3"><a href="#messages" class="active">Messages</a></li>
 				</ul>
 			</div>
 			<div class="content-holder">
@@ -384,36 +384,13 @@
 						</div>	
 					</div> 
 				</div>
-				<div id="test3" class="col-md-12 no_padding">
+				<div id="messages" class="col-md-12 no_padding">
 					<div class="heading no_border_bottom">
 						Todays
 						<div class="left"><a href="#"><i class="ion-android-refresh"></i></a></div>
 						<div class="right"><a href="#"><i class="ion-gear-a"></i></a></div>						
 					</div>
 					<div class="list-group message-list">
-						<a href="#" class="list-group-item">
-							<h4 class="list-group-item-heading">henry richards</h4>
-							<p class="list-group-item-text">has pushed all the code to github and saved some fixes too..</p>
-						</a>
-						<a href="#" class="list-group-item">
-							<h4 class="list-group-item-heading">mary </h4>
-							<p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto accusamus officiis vero magnam amet, quas corru</p>
-						</a>							
-					</div>	
-					<div class="heading no_border_bottom">
-						june 15 1990
-						<div class="left"><a href="#"><i class="ion-android-refresh"></i></a></div>
-						<div class="right"><a href="#"><i class="ion-gear-a"></i></a></div>						
-					</div>
-					<div class="list-group message-list">
-						<a href="#" class="list-group-item">
-							<h4 class="list-group-item-heading">henry richards</h4>
-							<p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto accusamus officiis vero magnam amet, quas corru</p>
-						</a>
-						<a href="#" class="list-group-item">
-							<h4 class="list-group-item-heading">mary </h4>
-							<p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto accusamus officiis vero magnam amet, quas corru</p>
-						</a>							
 					</div>	
 				</div>
 			</div>
@@ -427,29 +404,164 @@ MODALS
  -->
 
 	<!-- Responsive Modal -->
-	<div class="modal fade" id="responsivemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="modal-food-related" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+			data-type="">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true" class="ti-close"></span>
+						</button>
+						<h4 class="modal-title" id="modal-title">Enter your comment</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-12 col-s-12 col-xs-12">
+								<div class="responsive-bottom">
+									<textarea name="question" class="form-control text-area"
+										rows="20" placeholder="Type your Question" id="comment-food-related"></textarea>
+								</div>
+							</div>
+						</div>
+						<br>
+						<br>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary submit" id="submit-modal"
+								data-dismiss="modal" data-request="Food and nutrition">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Responsive Modal -->
+	<div class="modal fade" id="modal-child-life" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-type="">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="ti-close"></span></button>
-					<h4 class="modal-title" id="myModalLabel5">Need my nurse</h4>
+					<h4 class="modal-title" id="modal-title">Enter your comment</h4>
 				</div>
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12 col-s-12 col-xs-12">
 							<div class="responsive-bottom">
-								<textarea name="question" class="form-control text-area" rows="20" placeholder="Type your Question" id="nurse-question"></textarea>
+								<textarea name="question" class="form-control text-area" rows="20" placeholder="Type your Question" id="comment-child-life"></textarea>
 							</div>
 						</div>
 					</div>
 					<br><br>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="submit-need-my-nurse"  data-dismiss="modal">Submit</button>
+					<button type="button" class="btn btn-primary submit" id="submit-modal"  data-dismiss="modal" data-request="Child Life">Submit</button>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+	<!-- Responsive Modal -->
+	<div class="modal fade" id="modal-need-my-nurse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-type="">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="ti-close"></span></button>
+					<h4 class="modal-title" id="modal-title">Enter your comment</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12 col-s-12 col-xs-12">
+							<div class="responsive-bottom">
+								<textarea name="question" class="form-control text-area" rows="20" placeholder="Type your Question" id="comment-need-my-nurse"></textarea>
+							</div>
+						</div>
+					</div>
+					<br><br>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary submit" id="submit-modal"  data-dismiss="modal" data-request="Need my nurse">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- Responsive Modal -->
+	<div class="modal fade" id="modal-rapid-response" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-type="">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="ti-close"></span></button>
+					<h4 class="modal-title" id="modal-title">Enter your comment</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12 col-s-12 col-xs-12">
+							<div class="responsive-bottom">
+								<textarea name="question" class="form-control text-area" rows="20" placeholder="Type your Question" id="comment-rapid-response"></textarea>
+							</div>
+						</div>
+					</div>
+					<br><br>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary submit" id="submit-modal"  data-dismiss="modal" data-request="Rapid response">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- Responsive Modal -->
+	<div class="modal fade" id="modal-housekeeping" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-type="">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="ti-close"></span></button>
+					<h4 class="modal-title" id="modal-title">Enter your comment</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12 col-s-12 col-xs-12">
+							<div class="responsive-bottom">
+								<textarea name="question" class="form-control text-area" rows="20" placeholder="Type your Question" id="comment-housekeeping"></textarea>
+							</div>
+						</div>
+					</div>
+					<br><br>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary submit" id="submit-modal"  data-dismiss="modal" data-request="Housekeeping">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="modal fade" id="modal-non-clinical" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-type="">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="ti-close"></span></button>
+					<h4 class="modal-title" id="modal-title">Enter your comment</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12 col-s-12 col-xs-12">
+							<div class="responsive-bottom">
+								<textarea name="question-non-clinical" class="form-control text-area" rows="20" placeholder="Type your Question" id="comment-non-clinical"></textarea>
+							</div>
+						</div>
+					</div>
+					<br><br>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary submit" id="submit-modal"  data-dismiss="modal" data-request="Non-clinical Supplies">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 <!-- 
 END MODALS
