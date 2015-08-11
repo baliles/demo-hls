@@ -162,8 +162,8 @@ function initApp(){
 }
 
 function callMessagesService(){
-//	getMessages(serverUrl + '/api/v1/pr/chat?patient=' + patient);
-	getMessages('http://localhost:8080/demo-hls' + '/api/v1/pr/chat?patient=' + patient);
+	getMessages(serverUrl + '/api/v1/pr/chat?patient=' + patient);
+//	getMessages('http://localhost:8080/demo-hls' + '/api/v1/pr/chat?patient=' + patient);
 
 }
 
