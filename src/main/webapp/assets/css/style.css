@@ -180,7 +180,8 @@ html {
   padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: #e8ebf1;
+  /*background-color: #e8ebf1;*/
+  background-image: url("../images/background-healthcare.png"
   text-rendering: optimizeLegibility;
   text-rendering: geometricPrecision;
   font-smooth: always;
