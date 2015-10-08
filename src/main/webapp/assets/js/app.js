@@ -3,7 +3,8 @@ var sections;
 var debug = false;
 var patient = '0031a000003RTbLAAW';
 var q;
-var serverUrl = 'https://demo-hls.herokuapp.com';
+//var serverUrl = 'https://demo-hls.herokuapp.com';
+var serverUrl = 'http://localhost:8080/demo-hls';
 	
 function sendRequest(url, json, request_type){
 	  $.ajax({
