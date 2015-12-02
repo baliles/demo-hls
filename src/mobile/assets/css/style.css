@@ -541,7 +541,7 @@ html {
 }
 .top-bar .navbar-nav {
   margin: 0;
-  height: 70px;
+  height: 40px;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
