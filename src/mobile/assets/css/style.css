@@ -273,7 +273,7 @@ html {
 .side-bar.right-bar {
   float: right !important;
   right: -266px;
-  top: 70px;
+  top: 40px;
 }
 .left-bar.right-bar.left-layout,
 .side-bar.right-bar.left-layout {
@@ -283,7 +283,7 @@ html {
 .left-bar .admin-logo,
 .side-bar .admin-logo {
   background-color: #2196f3;
-  min-height: 70px;
+  min-height: 40px;
   padding-left: 15px;
   position: fixed !important;
   width: 266px;
@@ -321,7 +321,7 @@ html {
 }
 .left-bar .menu-parent,
 .side-bar .menu-parent {
-  padding-top: 70px;
+  padding-top: 40px;
 }
 .left-bar .menu-parent li.current a,
 .side-bar .menu-parent li.current a {
@@ -475,7 +475,7 @@ html {
   padding-right: 30px;
 }
 .top-bar {
-  height: 70px;
+  height: 40px;
   background-color: #ffffff;
   min-height: 0;
   display: table;
@@ -1386,7 +1386,7 @@ body.boxed {
   .top-bar .navbar-nav > li a {
     min-width: 0;
     font-size: 14px;
-    line-height: 70px;
+    line-height: 40px;
   }
   .top-bar .dropdown .avatar-holder {
     width: 20px;
