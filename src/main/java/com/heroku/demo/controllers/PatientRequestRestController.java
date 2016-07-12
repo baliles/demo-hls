@@ -129,7 +129,7 @@ public class PatientRequestRestController {
 //		
 //	}
 
-	@RequestMapping(value="/{id}", method=RequestMethod.GET,
+	@RequestMapping(value="/id/{id}", method=RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
 	public ResponseMessage getOne(@PathVariable Integer id) {
